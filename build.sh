@@ -166,7 +166,7 @@ then
 		elif [ ${arg:0:${#PAR_JAR}} = "$PAR_JAR" ]
 		then
 			JAR=1
-			echo "Set to a JAR file"
+			echo "Set to create a JAR file"
 			
 		fi
 	done
@@ -211,7 +211,7 @@ then
 	CLASS_FILES=`find -name *.class`
 	if [ "$CLASS_FILES" != "" ]
 	then
-		rm "$CLASS_FILES"
+		rm $CLASS_FILES
 		echo "Removed all .class files"
 	else
 		echo "No .class files to remove"
@@ -229,11 +229,9 @@ JAVA_FILES=`find -path ./com/Ostermiller/Syntax/doc -prune -o -name *.java -prin
 if [ "$CYGWIN" = "true" ]
 then
 	JAVA_FILES=`cygpath -wp $JAVA_FILES`
-	ERR=`"$JAVA"javac $JAVA_FILES 2>&1`
-	echo $ERR
-else
-	"$JAVA"javac $JAVA_FILES
 fi
+ERR=`"$JAVA"javac -source 1.5 $JAVA_FILES 2>&1`
+echo $ERR
 
 if [ $JAR -eq 1 ]
 then
@@ -243,7 +241,11 @@ then
 	then
 		FILES_FOR_JAR=`find -name *.class`
 		JAR_FILE=oster.jar
-		jar cf $JAR_FILE `cygpath -wp $FILES_FOR_JAR`
+		if [ "$CYGWIN" = "true" ]
+		then
+			FILES_FOR_JAR=`cygpath -wp $FILES_FOR_JAR`
+		fi
+		jar cf $JAR_FILE $FILES_FOR_JAR
 		echo "Created $JAR_FILE jar file"
 	else
 		echo "Jar file not created because there were errors during compilation"
