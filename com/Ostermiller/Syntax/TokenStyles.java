@@ -19,12 +19,13 @@ package com.Ostermiller.Syntax;
 
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
-class TokenStyles {
+public class TokenStyles {
 	private TokenStyles() { } // disable constructor
 	
 	/**
@@ -32,11 +33,12 @@ class TokenStyles {
 	 * by name (String)
 	 */
 	private static HashMap styles = new HashMap();
+	private static int fontSize = 12;
 
 	/**
 	 * Create the styles and place them in the hash table.
 	 */
-	static {
+	public static void initialize() {
 		Color maroon = new Color(0xB03060);
 		Color darkBlue = new Color(0x000080);
 		Color darkGreen = Color.GREEN.darker();
@@ -66,7 +68,7 @@ class TokenStyles {
 			boolean italic) {
 		SimpleAttributeSet style = new SimpleAttributeSet();
 		StyleConstants.setFontFamily(style, "Monospaced");
-		StyleConstants.setFontSize(style, 12);
+		StyleConstants.setFontSize(style, fontSize);
 		StyleConstants.setBackground(style, bg);
 		StyleConstants.setForeground(style, fg);
 		StyleConstants.setBold(style, bold);
@@ -85,4 +87,16 @@ class TokenStyles {
 	public static AttributeSet getStyle(String styleName) {
 		return (AttributeSet) styles.get(styleName);
 	}
+	
+	// TTX: attempts to update font size, though doesn't seem to work
+	/*
+	public static void updateFontSize(int size) {
+		for (Object val : styles.values()) {
+			SimpleAttributeSet set = (SimpleAttributeSet)val;
+			StyleConstants.setFontSize(set, size);
+		}
+	}
+	*/
+	
+	public static void setFontSize(int val) { fontSize = val; }
 }

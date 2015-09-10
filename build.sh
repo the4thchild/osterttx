@@ -230,7 +230,7 @@ if [ "$CYGWIN" = "true" ]
 then
 	JAVA_FILES=`cygpath -wp $JAVA_FILES`
 fi
-ERR=`"$JAVA"javac -source 1.5 $JAVA_FILES 2>&1`
+ERR=`"$JAVA"javac -source 1.5 $JAVA_FILES`
 echo $ERR
 
 if [ $JAR -eq 1 ]
