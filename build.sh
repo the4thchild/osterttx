@@ -73,6 +73,7 @@ Last updated:
 
 # compiler location
 JAVA=""
+JAVA_VER_SRC="1.5"
 
 ####################
 # Setup variables
@@ -230,7 +231,7 @@ if [ "$CYGWIN" = "true" ]
 then
 	JAVA_FILES=`cygpath -wp $JAVA_FILES`
 fi
-ERR=`"$JAVA"javac -source 1.5 $JAVA_FILES`
+ERR=`"$JAVA"javac -source $JAVA_VER_SRC -target $JAVA_VER_SRC $JAVA_FILES`
 echo $ERR
 
 if [ $JAR -eq 1 ]

@@ -32,13 +32,14 @@ public class TokenStyles {
 	 * A hash table containing the text styles. Simple attribute sets are hashed
 	 * by name (String)
 	 */
-	private static HashMap styles = new HashMap();
+	private static HashMap styles = null;
 	private static int fontSize = 12;
 
 	/**
 	 * Create the styles and place them in the hash table.
 	 */
 	public static void initialize() {
+		styles = new HashMap();
 		Color maroon = new Color(0xB03060);
 		Color darkBlue = new Color(0x000080);
 		Color darkGreen = Color.GREEN.darker();
