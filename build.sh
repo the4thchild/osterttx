@@ -60,10 +60,10 @@ Parameters:
 	--help: Lends a hand by displaying yours truly.
 	
 Copyright:
-	Copyright (c) 2012 Text Flex
+	Copyright (c) 2012, 2015 Text Flex
 
 Last updated:
-	2012-11-03
+	2015-09-14
 "
 
 #####################
@@ -73,7 +73,6 @@ Last updated:
 
 # compiler location
 JAVA=""
-JAVA_VER_SRC="1.5"
 
 ####################
 # Setup variables
