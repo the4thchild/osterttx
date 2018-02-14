@@ -93,7 +93,7 @@ cd "$BASE_DIR"
 BASE_DIR="$PWD"
 
 # Platform and GUI detection
-source "$BASE_DIR"/../texttrix/trunk/build-setup.sh
+source "$BASE_DIR"/../texttrix/build-setup.sh
 
 ##############
 # Respond to user arguments
@@ -164,7 +164,7 @@ cd "$BASE_DIR" # change to work directory
 
 #############
 # Clean files and exit
-if [ $CLEAN = 1 ]
+if [ $CLEAN -eq 1 ]
 then
 	CLASS_FILES=`find -name *.class`
 	if [ "$CLASS_FILES" != "" ]
@@ -183,7 +183,7 @@ echo ""
 echo "Compiling the Text-Trix-modified Ostermiller Syntax Highlighter library..."
 echo "Using the Java binary directory at [defaults to PATH]:"
 echo "$JAVA"
-JAVA_FILES=`find -path ./com/Ostermiller/Syntax/doc -prune -o -name *.java -print`
+JAVA_FILES=`find . -path ./com/Ostermiller/Syntax/doc -prune -o -name *.java -print`
 if [ "$CYGWIN" = "true" ]
 then
 	JAVA_FILES=`cygpath -wp $JAVA_FILES`
@@ -197,7 +197,7 @@ then
 	# compilation error
 	if [ "${ERR/error/}" == "$ERR" ]
 	then
-		FILES_FOR_JAR=`find -name *.class`
+		FILES_FOR_JAR=`find . -name *.class`
 		JAR_FILE=oster.jar
 		if [ "$CYGWIN" = "true" ]
 		then
